@@ -23,6 +23,6 @@ export default class Bullet {
             this.y < sprite.y+sprite.height){
                 return true;
             }
-            return false;
+        return false;
     }
 }
