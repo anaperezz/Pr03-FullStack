@@ -4,9 +4,10 @@ export default class Player {
     leftPressed = false;
     shootPressed = false;
 
-    constructor(canvas, velocity){
+    constructor(canvas, velocity, bulletController){
         this.canvas = canvas;
         this.velocity = velocity;
+        this.bulletController = bulletController;
 
         this.x = this.canvas.width/2;
         this.y = this.canvas.height -75;
@@ -22,7 +23,10 @@ export default class Player {
 
     draw(ctx){
         if(this.shootPressed){
-            console.log("shoot");
+            //shoot bullets from middle of spaceship
+            //4 is velocity
+            //10 is the gap in time between bullets
+            this.bulletController.shoot(this.x+this.width/2, this.y, 4, 10);
         }
         this.move();
         this.collideWithWalls();
