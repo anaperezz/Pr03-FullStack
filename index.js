@@ -25,7 +25,7 @@ var didWin = false;
 var timeElapsed = 0;
 
 function game(){
-    timeElapsed++;
+    timeElapsed+= 1000/60;
     checkGameOver();
     ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
     displayGameOver();
@@ -44,11 +44,15 @@ function displayGameOver(){
         let text = didWin ? "You Win! :) \n" : "Game Over :( \n";
         let textOffset = didWin ? 3.5 : 6;
         ctx.fillStyle = "white";
+        ctx.strokeStyle = "red";
         ctx.font = "60px Arial";
         ctx.fillText(text, canvas.width / textOffset, canvas.height / 3);
+        ctx.strokeText(text, canvas.width / textOffset, canvas.height / 3);
         ctx.font = "30px Arial";
-        ctx.fillText("Score: " + enemyController.kills, canvas.width / textOffset , canvas.height * 0.6);
-        ctx.fillText("Time elapsed: " + timeElapsed/1000 + "s", canvas.width / textOffset , canvas.height * 0.7);
+        ctx.fillText("Snacks Devoured: " + enemyController.kills, canvas.width / textOffset , canvas.height * 0.6);
+        ctx.strokeText("Snacks Devoured: " + enemyController.kills, canvas.width / textOffset , canvas.height * 0.6);
+        ctx.fillText("Time elapsed: " + parseFloat(timeElapsed/1000).toFixed(3) + "s", canvas.width / textOffset , canvas.height * 0.7);
+        ctx.strokeText("Time elapsed: " + parseFloat(timeElapsed/1000).toFixed(3) + "s", canvas.width / textOffset , canvas.height * 0.7);
     }
 }
 
